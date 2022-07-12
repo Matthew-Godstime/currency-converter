@@ -28,12 +28,12 @@ export class AppComponent implements OnInit {
     })
    }
 
-  @HostListener('keyup', ['$event']) CheckInput(event: KeyboardEvent) {
+  @HostListener('keyup', ['$event']) CheckInput(event: KeyboardEvent): void {
     if ((event.target as HTMLInputElement).name === 'currencyFrom') this.calculateToExchange();
     else this.calculateFromExchange();
   }
 
-  @HostListener('click', ['$event']) checkSelect(event: Event) {
+  @HostListener('click', ['$event']) checkSelect(event: Event): void {
     if ((event.target as HTMLSelectElement).name == 'countryFrom' && (event.target as HTMLSelectElement).value !== 'USD') {
       this.getFromRate();
       this.calculateFromExchange();
@@ -47,25 +47,25 @@ export class AppComponent implements OnInit {
   }
 
   // Get the from rate
-  private getFromRate() {
+  private getFromRate(): void {
     // Had to include the additional USD string to get the rate
     this.currentFromRate = this.rates['USD' + this.fromSymbol]
   }
 
   // Get thr To rate
-  private getToRate() {
+  private getToRate(): void {
     // Had to include the additional USD string to get the rate
     this.currentToRate = this.rates['USD' + this.toSymbol]
   }
 
   // Calculate TO the given values
-  public calculateToExchange() {
+  public calculateToExchange(): void {
     this.toExchangeRate = this.fromValue * this.currentToRate;
     this.toValue = this.toExchangeRate.toLocaleString()
   }
 
   // Calculate From the given values
-  public calculateFromExchange() {
+  public calculateFromExchange(): void {
     this.fromExchangeRate = this.toValue * this.currentFromRate;
     this.fromValue = this.fromExchangeRate.toLocaleString();
   }
@@ -80,7 +80,7 @@ export class AppComponent implements OnInit {
   }
 
   // The API returned an additional USD to the string, I had to substring it.
-  public getRates() {
+  public getRates(): string[] {
     let keys: string[] = [];
     if (this.rates) {
       Object.keys(this.rates).forEach(el => {
