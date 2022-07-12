@@ -25,7 +25,6 @@ export class AppComponent implements OnInit {
       this.getFromRate();
       this.getToRate();
       this.calculateToExchange();
-      console.log(this.rates);
     })
    }
 
@@ -47,19 +46,25 @@ export class AppComponent implements OnInit {
     }
   }
 
+  // Get the from rate
   private getFromRate() {
+    // Had to include the additional USD string to get the rate
     this.currentFromRate = this.rates['USD' + this.fromSymbol]
   }
 
+  // Get thr To rate
   private getToRate() {
+    // Had to include the additional USD string to get the rate
     this.currentToRate = this.rates['USD' + this.toSymbol]
   }
 
+  // Calculate TO the given values
   public calculateToExchange() {
     this.toExchangeRate = this.fromValue * this.currentToRate;
     this.toValue = this.toExchangeRate.toLocaleString()
   }
 
+  // Calculate From the given values
   public calculateFromExchange() {
     this.fromExchangeRate = this.toValue * this.currentFromRate;
     this.fromValue = this.fromExchangeRate.toLocaleString();
@@ -74,6 +79,7 @@ export class AppComponent implements OnInit {
     return this.getRates();
   }
 
+  // The API returned an additional USD to the string, I had to substring it.
   public getRates() {
     let keys: string[] = [];
     if (this.rates) {

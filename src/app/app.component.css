@@ -12,3 +12,16 @@ select {
     text-align: center;
     font-size: large;
 }
+
+@media screen and (max-width: 426px) {
+    input {
+            width: 90%;
+            height: 7vh;
+        }
+    
+        select {
+            width: 90%;
+            text-align: center;
+            font-size: large;
+        }
+}
