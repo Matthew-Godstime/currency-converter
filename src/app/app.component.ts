@@ -8,7 +8,7 @@ import { ConverterService } from './converter.service';
 })
 export class AppComponent implements OnInit {
 
-  title = 'currencyConverter';
+  title = "Stime's Currency Converter";
   public fromValue: any = 1;
   public toValue: any = 0;
   public rates: any;
