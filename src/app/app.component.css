@@ -1,0 +1,14 @@
+.col-6 {
+    margin: .5em 0;
+}
+
+input {
+    width: 20vw;
+    height: 5vh;
+}
+
+select {
+    width: 20vw;
+    text-align: center;
+    font-size: large;
+}
