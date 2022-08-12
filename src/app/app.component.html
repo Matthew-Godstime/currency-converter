@@ -1,21 +1,59 @@
 <div class="container">
-  <h1 class="text-center my-4"> {{title}} </h1>
-  <div class="row row-cols-2">
+  <header class="my-3">
+    <h1 class="text-center my-4"> {{title}} </h1>
+    <h6 class="text-center"><i>V- 2.1.0</i></h6>
+  </header>
+  <div class="row">
+    <div class="col-12 col-md-6 mx-auto">
+      <div class="d-none">
+        <div *ngIf="isUpdating" class="progress">
+          <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar"
+            aria-label="Animated striped example" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"
+            style="width: 100%">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row row-cols-2 mx-auto">
     <div class="col-6 d-flex justify-content-end">
-      <select name="countryFrom" id="select-country" [(ngModel)]="fromSymbol">
-        <option *ngFor="let rate of fromRates" [value]="rate">{{ rate }}</option>
+      <select [(ngModel)]="fromSymbol" [disabled]="isUpdatingFrom ? true : false" name="countryFrom" id="select-country"
+        (change)="checkSelect($event)">
+        <option *ngFor="let rate of fromRates" [value]="rate[0]"> {{rate[0]}} - {{ rate[1] }}</option>
       </select>
+
     </div>
     <div class="col-6">
-      <input type="text" name="currencyFrom" id="ammount" [(ngModel)]="fromValue">
+      <i class="fa fa-long-arrow-down fs-4" aria-hidden="true"></i>
+      <input [disabled]="isUpdatingFrom ? true : false" type="text" name="currencyFrom" id="FromAmount"
+        [(ngModel)]="fromValue">
+        <div class="ms-3 position-absolute">
+          <i *ngIf="incorrectFrom"class="text-danger danger fw-semibold">Cannot convert Alphabet</i>
+        </div>
     </div>
+
     <div class="col-6 d-flex justify-content-end">
-      <select name="countryTo" id="select-country" [(ngModel)]="toSymbol">
-        <option *ngFor="let rate of toRates" [value]="rate">{{ rate }}</option>
+      <select class="mt-3" [(ngModel)]="toSymbol" [disabled]="isUpdatingTo ? true : false" name="countryTo" id="select-country"
+        (change)="checkSelect($event)">
+        <option *ngFor="let rate of toRates" [value]="rate[0]"> {{rate[0]}} - {{ rate[1] }}</option>
       </select>
     </div>
-    <div class="col-6">
-      <input type="text" name="currencyTo" id="ammount" [(ngModel)]="toValue">
+    <div class="col-6 mt-4">
+      <i class="fa fa-long-arrow-up fs-4" aria-hidden="true"></i>
+      <input [disabled]="isUpdatingTo ? true : false" type="text" name="currencyTo" id="ToAmount" [(ngModel)]="toValue">
+      <div class="ms-3 position-absolute">
+        <i *ngIf="incorrectTo" class="text-danger danger fw-semibold">Cannot convert Alphabet</i>
+      </div>
     </div>
+  </div>
+
+  <div class="col-6">
+    <div *ngIf="isExchangeRateUpdated" class="position-absolute update slideOutUp animated">
+      <p class="bg-success text-white d-inline p-2">Exchange Rates Updated</p>
+    </div>
+  </div>
+  
+  <div *ngIf="isExchangeRateUpdateFailed" class="position-absolute updateFailed">
+    <p class="bg-danger text-white p-2">{{errorDetails}}</p>
   </div>
 </div>

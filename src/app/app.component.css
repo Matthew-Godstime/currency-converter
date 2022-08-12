@@ -8,20 +8,133 @@ input {
 }
 
 select {
-    width: 20vw;
+    width: 21vw;
     text-align: center;
     font-size: large;
+    /* height: 35px; */
+}
+
+/*base code*/
+.animated {
+    -webkit-animation-duration: 3s;
+    animation-duration: 3s;
+    -webkit-animation-fill-mode: both;
+    animation-fill-mode: both;
+}
+
+.animated.infinite {
+    -webkit-animation-iteration-count: infinite;
+    animation-iteration-count: infinite;
+}
+
+.animated.hinge {
+    -webkit-animation-duration: 3s;
+    animation-duration: 3s;
+}
+
+/*the animation definition*/
+@-webkit-keyframes slideOutUp {
+    0% {
+        -webkit-transform: translate3d(0, 0, 0);
+        transform: translate3d(0, 0, 0)
+    }
+
+    100% {
+        visibility: hidden;
+        -webkit-transform: translate3d(0, -800%, 0);
+        transform: translate3d(0, -800%, 0)
+    }
+}
+
+@keyframes slideOutUp {
+    0% {
+        -webkit-transform: translate3d(0, 0, 0);
+        -ms-transform: translate3d(0, 0, 0);
+        transform: translate3d(0, 0, 0)
+    }
+
+    100% {
+        visibility: hidden;
+        -webkit-transform: translate3d(0, -800%, 0);
+        -ms-transform: translate3d(0, -800%, 0);
+        transform: translate3d(0, -800%, 0)
+    }
+}
+
+.slideOutUp {
+    -webkit-animation-name: slideOutUp;
+    animation-name: slideOutUp
+}
+
+.update {
+    top: 85%;
+    margin: 0 auto !important;
+    left: 43%;
+}
+
+.danger {
+    font-size: small;
+}
+
+.updateFailed {
+    top: 70%;
+    left: 30%;
+    right: 30%;
+}
+
+@media screen and (max-width: 900px) {
+    .update {
+        left: 37%;
+    }
+
+
+}
+
+@media screen and (max-width: 650px) {
+    .update {
+        left: 33%;
+    }
 }
 
 @media screen and (max-width: 426px) {
     input {
-            width: 90%;
-            height: 7vh;
-        }
-    
-        select {
-            width: 90%;
-            text-align: center;
-            font-size: large;
-        }
+        width: 90%;
+        height: 7vh;
+        background-color: #fff;
+    }
+
+    select {
+        width: 98%;
+        text-align: center;
+        font-size: large;
+        background-color: #fff;
+    }
+
+    .update {
+        left: 26%;
+    }
+.updateFailed {
+    left: 13%;
+    right: 13%;
+}
+    .danger {
+        font-size: x-small;
+    }
+}
+
+@media screen and (max-width: 339.99px) {
+    input {
+        width: 89%;
+        height: 7vh;
+    }
+
+    select {
+        width: 98%;
+        text-align: center;
+        font-size: large;
+    }
+
+    .update {
+        left: 18%;
+    }
 }

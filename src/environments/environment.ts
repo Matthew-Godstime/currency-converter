@@ -4,8 +4,9 @@
 
 export const environment = {
   production: false,
-  _url: "",
-  _key: ""
+  _url: "url api",
+  _key: "api key"
+
 };
 
 /*
