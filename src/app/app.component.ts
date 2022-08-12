@@ -55,10 +55,10 @@ export class AppComponent implements OnInit, OnDestroy {
   // Input event listener
   @HostListener('keyup', ['$event']) CheckInput(event: KeyboardEvent): void {
     let inputEvent = (event.target as HTMLInputElement);
-    if (this.fromValue.startsWith("0")) this.fromValue = this.fromValue.substring(1);
-    if (this.toValue.startsWith("0")) this.toValue = this.toValue.substring(1);
-    if (this.fromValue === "") this.fromValue = "0";
-    if (this.toValue === "") this.toValue = "0";
+    if (this.fromValue.startsWith("0") || this.fromValue.startsWith(".")) this.fromValue = this.fromValue.substring(1);
+    if (this.toValue.startsWith("0") || this.toValue.startsWith(".")) this.toValue = this.toValue.substring(1);
+    if (this.fromValue === "" || this.fromValue === ".") this.fromValue = "0";
+    if (this.toValue === "" || this.toValue === ".") this.toValue = "0";
     if (inputEvent.name === 'currencyFrom') {
       if (this.checkIfChar(inputEvent.value, 'currencyFrom')) {
         this.isUpdating = true;
