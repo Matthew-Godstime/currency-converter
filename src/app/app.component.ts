@@ -113,22 +113,22 @@ export class AppComponent implements OnInit, OnDestroy {
       this.fromSymbol = (event.target as HTMLSelectElement).value;
       this.getFromRate();
       this.isUpdating = true;
-      this.isUpdatingFrom = true;
+      this.isUpdatingTo = true;
       setTimeout(() => {
-        this.calculateFromExchange();
+        this.calculateToExchange();
         this.isUpdating = false;
-        this.isUpdatingFrom = false;
+        this.isUpdatingTo = false;
       }, 500);
     }
     if ((event.target as HTMLSelectElement).name == 'countryTo') {
       this.toSymbol = (event.target as HTMLSelectElement).value
       this.getToRate();
       this.isUpdating = true;
-      this.isUpdatingTo = true;
+      this.isUpdatingFrom = true;
       setTimeout(() => {
-        this.calculateToExchange();
+        this.calculateFromExchange();
         this.isUpdating = false;
-        this.isUpdatingTo = false;
+        this.isUpdatingFrom = false;
       }, 500);
     }
   }
