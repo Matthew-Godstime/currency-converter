@@ -33,8 +33,8 @@ export class AppComponent implements OnInit, OnDestroy {
     this.init();
   }
   private init() {
-    this.subscription = this.cs.getCurrentExchange().subscribe(
-      (next: any) => {
+    this.subscription = this.cs.getCurrentExchange().subscribe({
+      next: (next: any) => {
         this.rates = next.rates;
         // this.rates = next; // Remove For production
         if (this.rates) {
@@ -44,12 +44,13 @@ export class AppComponent implements OnInit, OnDestroy {
           this.isExchangeRateUpdated = true;
         }
       },
-      (error) => {
+      error: (err: Error) => {
         this.isExchangeRateUpdateFailed = true
         this.errorDetails = new Error("Failed to Fetch the Exchange Rate. Check your Connection, and try again");
         throw this.errorDetails;
-      }
-    );
+      },
+      complete: () => console.log('Observer got a complete notification'),
+    });
   }
 
   // Input event listener
